@@ -135,7 +135,7 @@ function runLoader(onReveal) {
       .fromTo(dot,
         { y: -fall, scaleX: 0.7, scaleY: 1.6, opacity: 1 },
         { y: 0, duration: 0.5, ease: 'power2.in' }, 0.4)
-      .addLabel('land')
+      .addLabel('land', '>') // the moment the drop hits — not the end of the letters' entrance
       // Liquid squash on impact, the letters dip with it
       .to(dot, { scaleX: 1.45, scaleY: 0.55, duration: 0.08, ease: 'power1.out' }, 'land')
       .to(dot, { scaleX: 1, scaleY: 1, duration: 0.7, ease: 'elastic.out(1, 0.35)' }, 'land+=0.08')
