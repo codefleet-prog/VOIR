@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="hu" class="is-loading">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VOIR Perfumes — Luxus Parfümök</title>
+
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- GSAP Core & ScrollTrigger Animation Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <!-- Without JS the loader would never lift -->
+  <noscript><style>.loader { display: none; }</style></noscript>
+</head>
+<body class="site-body">
+
+  <!-- LOADING SCREEN — the period of "VOIR." falls in as a drop, fills the ring, then floods and becomes the hero ring -->
+  <div id="loader" class="loader" aria-hidden="true">
+    <svg class="loader__ring" viewBox="0 0 100 100">
+      <circle class="loader__ring-track" cx="50" cy="50" r="49" />
+      <circle class="loader__ring-bar"   cx="50" cy="50" r="49" pathLength="1" />
+    </svg>
+
+    <div class="loader__logo">
+      <span class="loader__mask"><span class="loader__char">V</span></span>
+      <span class="loader__mask"><span class="loader__char">O</span></span>
+      <span class="loader__mask"><span class="loader__char">I</span></span>
+      <span class="loader__mask"><span class="loader__char">R</span></span>
+      <span class="loader__dot"></span>
+    </div>
+
+    <p class="loader__count">— <span class="loader__count-num">000</span></p>
+
+    <div class="loader__flood"></div>
+  </div>
+
+
+  <!-- Fixed Persistent Header -->
+  <header class="header-el site-header">
+    <div class="header-inner">
+      <!-- Monogram/Logo -->
+      <a href="#" class="logo-link">
+        VOIR.
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="desktop-nav">
+        <a href="#"      data-text="KEZDŐLAP"   class="nav-link nav-link-underline">KEZDŐLAP</a>
+        <a href="#about" data-text="RÓLUNK"     class="nav-link nav-link-underline">RÓLUNK</a>
+        <a href="#offers" data-text="PARFÜMÖK" class="nav-link nav-link-underline">PARFÜMÖK</a>
+        <a href="#gallery" data-text="GALÉRIA"  class="nav-link nav-link-underline">GALÉRIA</a>
+        <a href="#contact" data-text="KAPCSOLAT" class="nav-link nav-link-underline">KAPCSOLAT</a>
+      </nav>
+
+      <!-- Mobile Menu Open Button -->
+      <button onclick="toggleMobileMenu(true)" class="mobile-menu-btn" aria-label="Menü megnyitása">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line hamburger-line--short"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Fixed Overlay for Shared Circle Element — decorative outline ring in hero, fills on scroll -->
+  <div id="fixed-circle-wrapper" class="circle-wrapper">
+    <div class="circle-el" style="border: 3px solid var(--accent); background: transparent;"></div>
+  </div>
+
+  <!-- FIXED MENU SECTION OVERLAY -->
+  <div id="menu-section-overlay" class="section-overlay">
+
+    <!-- 4 Offer Images Overlay -->
+    <img src="assets/Argent-new.png" alt="Prosciutto E Rucola Pizza"   class="offer-img offer-img-1">
+    <img src="assets/CuirMetalic-new.png" alt="Diavola Piccante Pizza"      class="offer-img offer-img-2">
+    <img src="assets/Dualite-new.png" alt="Panuozzo Parma Sandwich"     class="offer-img offer-img-3">
+    <img src="assets/Magnifique-new.png" alt="Panuozzo Piccante Sandwich"  class="offer-img offer-img-4">
+
+    <div class="menu-grid">
+
+      <!-- Left Column: Master Heading -->
+      <div class="menu-heading-col">
+        <div class="menu-master-heading">
+          <h2 class="section-eyebrow">Különleges Parfümjeink</h2>
+          <h3 class="menu-title">ILLATOK.</h3>
+        </div>
+      </div>
+
+      <!-- Right Column: Menu Categories -->
+      <div class="menu-cats-col">
+        <div class="menu-cats-inner">
+
+          <!-- Category 1 -->
+          <div class="menu-cat menu-cat-1">
+            <p class="cat-number">— 01</p>
+            <h2 class="cat-heading">Argent</h2>
+            <p class="cat-description">
+              Az Argent egy friss, fémes illatjegyekkel gazdagított mestermű, mely fás alapokon nyugszik, hogy hosszan tartó hatást biztosítson.
+            </p>
+          </div>
+
+          <!-- Category 2 -->
+          <div class="menu-cat menu-cat-2">
+            <p class="cat-number">— 02</p>
+            <h2 class="cat-heading">Cuir<br>Metaliqué</h2>
+            <p class="cat-description">
+              Merész és markáns, a Cuir Metaliqué a prémium bőr illatát fémes akkordokkal ötvözi, ami egyedi és felejthetetlen aurát teremt.
+            </p>
+          </div>
+
+          <!-- Category 3 -->
+          <div class="menu-cat menu-cat-3">
+            <p class="cat-number">— 03</p>
+            <h2 class="cat-heading">Dualité</h2>
+            <p class="cat-description">
+              A Dualité a kontrasztok játéka. Virágos és fűszeres jegyek találkozása egy elegáns, mégis rejtélyes parfümben, minden alkalomra tökéletes.
+            </p>
+          </div>
+
+          <!-- Category 4 -->
+          <div class="menu-cat menu-cat-4">
+            <p class="cat-number">— 04</p>
+            <h2 class="cat-heading">Magnifique</h2>
+            <p class="cat-description">
+              A Magnifique egy fényűző, gazdag illat, amely az orientális fűszerek melegségével és a vanília édességével burkolja be viselőjét.
+            </p>
+          </div>
+
+          <!-- Global CTA -->
+          <div class="menu-cta">
+            <a href="#" class="cta-link">
+              <span class="cta-link__text">Összes Parfüm Megtekintése</span>
+              <svg class="cta-link__arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FIXED GALLERY SECTION OVERLAY -->
+  <div id="gallery-section-overlay" class="section-overlay gallery-overlay">
+    <div class="gallery-inner">
+
+      <!-- Right-aligned heading -->
+      <div class="gallery-master-heading">
+        <h2 class="gallery-subheader section-eyebrow">Galéria</h2>
+        <h3 class="gallery-title">PILLANATOK.</h3>
+      </div>
+
+      <!-- Parallax Circles -->
+      <div id="gallery-parallax-circles" class="parallax-circles-container">
+        <div class="gallery-parallax-circle parallax-circle-1"></div>
+        <div class="gallery-parallax-circle parallax-circle-2"></div>
+        <div class="gallery-parallax-circle parallax-circle-3"></div>
+        <div class="gallery-parallax-circle parallax-circle-4"></div>
+        <div class="gallery-parallax-circle parallax-circle-5"></div>
+        <div class="gallery-parallax-circle parallax-circle-6"></div>
+      </div>
+
+      <!-- Transition Circle -->
+      <div id="transition-circle" class="transition-circle" style="transform: translate(-50%, -150vh);"></div>
+
+      <!-- Masonry Gallery Images -->
+      <div class="gallery-grid-container">
+        <img src="assets/Argent-parfum.png"           alt="Handmade Pasta"    class="gallery-img gallery-img-1">
+        <img src="assets/Cuir-metaligue-parfum.png"       alt="Antipasti Platter" class="gallery-img gallery-img-2">
+        <img src="assets/Dualite-parfum.png"        alt="Panuozzo Sandwich" class="gallery-img gallery-img-3">
+        <img src="assets/Magnifique-parfum.png" alt="Pizza Margherita"  class="gallery-img gallery-img-4">
+        <img src="assets/Prestige-parfum.png"        alt="Tiramisu"          class="gallery-img gallery-img-5">
+      </div>
+    </div>
+  </div>
+
+  <!-- FIXED CONTACT SECTION OVERLAY -->
+  <div id="contact-section-overlay" class="section-overlay contact-overlay">
+
+    <!-- Dish Image -->
+    <img id="contact-dish-img" src="assets/Footer.png" alt="Pizza Slice" class="contact-dish-img" style="scale: 0.5; transform: translate(-50%, 50%) rotate(45deg);">
+
+    <div class="contact-inner">
+      <div class="contact-content">
+        <h2 class="section-eyebrow">Kapcsolat</h2>
+        <h3 class="contact-title">VÁRJUK ÉRDEKLŐDÉSÉT.</h3>
+
+        <div class="contact-details">
+          <div class="contact-row">
+            <svg class="contact-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <div>
+              <p class="contact-label">Voir Perfumes Boutique</p>
+              <p class="contact-value">7621 Pécs, Citrom utca 8.</p>
+            </div>
+          </div>
+
+          <div class="contact-row">
+            <svg class="contact-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            <div>
+              <p class="contact-label">Ügyfélszolgálat</p>
+              <p class="contact-value">+36 1 234 5678</p>
+            </div>
+          </div>
+
+          <div class="contact-row">
+            <svg class="contact-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <div>
+              <p class="contact-label">Nyitvatartás</p>
+              <p class="contact-value">Hétfő - Péntek 14:00 - 19:00</p>
+              <p class="contact-value">Szombat 10:00 - 14:00</p>
+              <p class="contact-value contact-value--muted">Vasárnap: Zárva</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-cta-wrap">
+          <a href="#reservations" class="cta-link">
+            <span class="cta-link__text">Vásárlás Online</span>
+            <svg class="cta-link__arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Scroll Container Wrapper -->
+  <div class="scroll-wrapper">
+
+    <!-- HERO SECTION -->
+    <section id="hero-section" class="hero-section">
+
+      <!-- HERO CONTENT WRAPPER -->
+      <div id="hero-content" class="hero-content">
+
+        <!-- Top Spacer -->
+        <div class="hero-spacer"></div>
+
+        <!-- HERO MAIN BODY GRID -->
+        <main class="hero-main">
+
+          <!-- Column 1: Left Text & CTA -->
+          <div class="left-col hero-col hero-col--left">
+            <p class="hero-body-text">
+              A VOIR Perfumes újraértelmezi az eleganciát. Illataink prémium összetevőkből, mesteri gondossággal készülnek, hogy minden cseppjük a luxus és az egyediség történetét mesélje el.
+            </p>
+            <a href="#about" class="cta-link hero-cta">
+              <span class="cta-link__text">Rólunk</span>
+              <svg class="cta-link__arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Column 2: Center Pizza -->
+          <div class="hero-circle-container hero-col hero-col--center">
+            <p class="hero-tagline hero-tagline-el">
+              "Az illatok művészete<br>— kiválóság kompromisszumok nélkül"
+            </p>
+            <img src="assets/Nudite-new.png" alt="Voir Parfüm" class="pizza-image">
+          </div>
+
+          <!-- Column 3: Large Title -->
+          <div class="right-col hero-col hero-col--right">
+            <span class="hero-rule"></span>
+            <h1 class="hero-heading">
+              <span class="hero-heading__san">Voir</span>
+              <span class="hero-heading__castello">Perfumes.</span>
+            </h1>
+            <p class="hero-est">Luxus és Egyediség</p>
+          </div>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="footer-el site-footer-bar">
+
+          <!-- Social Links -->
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Facebook">
+              <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Instagram">
+              <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Twitter">
+              <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+              </svg>
+            </a>
+            <a href="#" class="social-link" aria-label="LinkedIn">
+              <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Location -->
+          <div class="footer-location">
+            <svg class="footer-location__icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            7621 Pécs, Citrom utca 8.
+          </div>
+
+        </footer>
+
+      </div>
+
+      <!-- ABOUT SECTION VIEWPORT OVERLAY -->
+      <div id="about-section" class="about-section">
+
+        <img src="assets/DeliceTropical-new.png" alt="Luxus parfüm" class="about-sandwich-image">
+
+        <div class="about-grid">
+
+          <!-- Left Column: Story -->
+          <div class="about-content">
+            <h2 class="section-eyebrow">Szenvedély és Luxus</h2>
+            <h3 class="about-heading">
+              A VOIR Története
+            </h3>
+            <p class="about-body">
+              A VOIR Perfumes a szenvedély és a kifinomult ízlés találkozásából született. Alapítóink a világ legnevesebb parfümőreivel együttműködve alkották meg kollekciónkat, amely az időtlen eleganciát képviseli modern köntösben.
+            </p>
+            <p class="about-body">
+              Illatainkhoz kizárólag a legtisztább, etikus forrásból származó esszenciákat használjuk. Minden üveg egy műalkotás, amelyet gondos odafigyeléssel alkottunk meg, hogy hosszan tartó és felejthetetlen élményt nyújtson.
+            </p>
+            <div class="about-cta-wrap">
+              <a href="#offers" class="cta-link">
+                <span class="cta-link__text">Ajánlataink</span>
+                <svg class="cta-link__arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Column: Badge -->
+          <div class="about-accent-col">
+            <div class="about-badge">
+              <span class="about-badge__label">Alapítva Budapesten</span>
+              <span class="about-badge__year">EST. 1989</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Gallery anchor -->
+    <div id="gallery" class="gallery-anchor"></div>
+  </div>
+
+  <!-- FULL SCREEN MOBILE NAVIGATION OVERLAY -->
+  <div id="mobile-menu" class="mobile-menu-overlay">
+
+    <!-- Mobile Menu Header -->
+    <div class="mobile-menu-header">
+      <span class="mobile-menu-logo">VOIR.</span>
+      <button onclick="toggleMobileMenu(false)" class="mobile-close-btn" aria-label="Menü bezárása">
+        <svg class="mobile-close-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu Links -->
+    <nav class="mobile-nav">
+      <a href="#"        onclick="toggleMobileMenu(false)" class="mobile-nav-link">KEZDŐLAP</a>
+      <a href="#about"   onclick="toggleMobileMenu(false)" class="mobile-nav-link">RÓLUNK</a>
+      <a href="#offers"  onclick="toggleMobileMenu(false)" class="mobile-nav-link">PARFÜMÖK</a>
+      <a href="#gallery" onclick="toggleMobileMenu(false)" class="mobile-nav-link">GALÉRIA</a>
+      <a href="#contact" onclick="toggleMobileMenu(false)" class="mobile-nav-link">KAPCSOLAT</a>
+    </nav>
+
+    <!-- Mobile Menu Footer -->
+    <div class="mobile-menu-footer">
+      <span class="mobile-menu-location">
+        <svg class="footer-location__icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+        </svg>
+        7621 Pécs, Citrom utca 8.
+      </span>
+    </div>
+
+  </div>
+
+  <!-- INTERACTION AND ANIMATION LOGIC SCRIPT -->
+  <script src="script.js"></script>
+</body>
+</html>
